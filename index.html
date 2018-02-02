@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ltc - chatApp</title>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+
+  <style>
+    form input {
+      border: 0;
+      padding: 10px;
+      width: 90%;
+      margin-right: .5%;
+    }
+
+    form button {
+      width: 9%;
+      background: rgb(130, 224, 255);
+      border: none;
+      padding: 10px;
+    }
+
+    #messages {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    #messages li {
+      padding: 5px 10px;
+    }
+
+    #messages li:nth-child(odd) {
+      background: #eee;
+    }
+
+    #messages {
+      margin-bottom: 40px
+    }
+  </style>
+
+</head>
+
+<body>
+
+
+  <div class="container">
+    <br>
+    <div class="jumbotron">
+      <h1 class="display-4">ltc:simpleChat</h1>
+      <br>
+      <input id="txtName" class="form-control" placeholder="Name" type="text">
+      <br>
+      <textarea id="messageTxt" class="form-control" placeholder="Message"></textarea>
+      <br>
+      <!---button type="button" id="send" class="btn btn-success">Send</button-->
+    </div>
+
+    <ul id="messages"></ul>
+  </div>
+
+  <script>
+    $(function() {
+      var socket = io();
+
+      $("#send").click(function() {
+        var content = {
+          name: $("#txtName").val(),
+          chat: $("#messageTxt").val()
+        };
+        socket.emit('chatMessage', content);
+      })
+
+
+      socket.on('chatMessage', function(msg) {
+
+        $('#messages').prepend($('<li>').text(msg.name + " : " + msg.chat));
+
+        window.scrollTo(0, document.body.scrollHeight);
+      });
+    });
+  </script>
+
+</body>
+
+</html>
