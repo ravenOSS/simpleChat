@@ -1,3 +1,4 @@
+This repo is for Learn to Code Colorado for the Web. express0.js demos a basic server. indexMin.html provides the basic page layout.
 1. Download and install Node.js
 www.nodejs.org
 On the command line (terminal) check installation by issuing:
@@ -15,5 +16,6 @@ This should give you a message about listening on a certain port.
 (localhost:3000)
 6. You should see a chat screen.
 7. Open a second browser window and enter same address.
-8. Enter message in one window and check the other window. Have fun chatting with yourself!
+8. Enter message in one window and check the other window.
+9. You can also launch the server with an IP address and port (eg 192.168.0.150:3000s) and others on the same network can plug in the same address on their browsers to have a multi-person chat.
 9. In 'https://github.com/ravenOSS/ltChatLite.git' there is another chat application that stores the messages in mongodb and when a user loads the page, the messages should load. Follow install instructions that somewhat overlap these.
