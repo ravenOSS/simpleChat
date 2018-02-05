@@ -61,7 +61,7 @@
       <br>
       <textarea id="messageTxt" class="form-control" placeholder="Message"></textarea>
       <br>
-      <!---button type="button" id="send" class="btn btn-success">Send</button-->
+      <button type="button" id="send" class="btn btn-success">Send</button>
     </div>
 
     <ul id="messages"></ul>
@@ -79,12 +79,10 @@
         socket.emit('chatMessage', content);
       })
 
-
       socket.on('chatMessage', function(msg) {
 
         $('#messages').prepend($('<li>').text(msg.name + " : " + msg.chat));
 
-        window.scrollTo(0, document.body.scrollHeight);
       });
     });
   </script>
